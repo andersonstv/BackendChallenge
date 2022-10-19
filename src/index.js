@@ -1,8 +1,7 @@
 const express = require('express');
 
-const mongo = require('mongodb');
-
 const app = express();
+
 
 app.get('/', (req, res) => {
   res.send('Hello Express app!')
