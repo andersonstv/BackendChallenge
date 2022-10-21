@@ -26,10 +26,11 @@ export async function getCharactersByName(name){
 }
 
 export async function getAllCharacters(){
+    let result;
     try{
         await client.connect();
         const db = client.db("asoiaf");
-        const result = await db.collection("characters").find({}).toArray();
+        result = await db.collection("characters").find({}).toArray();
     } catch(err){
         console.log(err.stack);
     } finally {

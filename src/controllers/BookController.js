@@ -27,12 +27,12 @@ export async function getAllBooks(){
     return result;
 }
 export async function getBooksByCharacterId(id){
-    let books = [];
+    let books;
     try{
         await client.connect();
         const db = client.db("asoiaf");
         const character = await db.collection("characters").findOne({_id: id});
-        //books = character.books;
+        books = character.books;
     } catch(err){
         console.log(err.stack);
     } finally {
