@@ -33,23 +33,20 @@ export async function getAllCharacters(){
     } catch(err){
         console.log(err.stack);
     } finally {
-        client.close();
+        await client.close();
     }
     return result;
 }
 export async function getAllPovCharacters(){
-    let charactersUrl = [];
-    let characters = [];
+    let characters;
     try{
         await client.connect();
         const db = client.db("asoiaf");
-        let result =  db.collection("books").find({}).project({povCharacters: 1});
-        await result.forEach(document => {charactersUrl = charactersUrl.concat(document.povCharacters)});
-
+        characters =  await db.collection("characters").find({'povBooks.0': {$exists: true}}).toArray();
     } catch(err){
         console.log(err.stack);
     } finally {
-        client.close();
+        await client.close();
     }
-    return [... new Set(characters)]
+    return characters
 }
