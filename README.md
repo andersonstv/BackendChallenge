@@ -1,6 +1,5 @@
 # BackendChallenge
 Backend Challenge for Mobix Software Studio
-# Backend Challenge
 
 Criar uma API em NodeJS que:
 
