@@ -6,7 +6,7 @@ export async function getBookById(id){
     try{
         await client.connect();
         const db = client.db("asoiaf");
-        result = await db.collection("books").findOne({_id: id}).toArray();
+        result = await db.collection("books").findOne({_id: id});
     } catch(err){
         console.log(err.stack);
     } finally {
@@ -39,4 +39,17 @@ export async function getBooksByCharacterId(id){
         await client.close();
     }
     return books;
+}
+export async function getBookCoverById(id){
+    let result;
+    try{
+        await client.connect();
+        const db = client.db("asoiaf");
+        result = await db.collection("books").findOne({_id: id});
+    } catch(err){
+        console.log(err.stack);
+    } finally {
+        client.close();
+    }
+    return result.cover;
 }

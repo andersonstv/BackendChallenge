@@ -1,5 +1,5 @@
 import express, { response } from 'express';
-import { getBooksByCharacterId } from './controllers/BookController.js';
+import { getBookCoverById, getBooksByCharacterId } from './controllers/BookController.js';
 import { getAllCharacters, getAllPovCharacters, getCharacterById } from './controllers/CharacterController.js';
 import { insert } from './db/db.js';
 import { init } from './db/init.js';
@@ -29,8 +29,11 @@ app.get('/characters', (req, res) => {
 });
 // get Books by character
 app.get('/characters/:id/books', (req, res) => {
-    getBooksByCharacterId(req.params.id).then()
+    getBooksByCharacterId(req.params.id).then(result => (res.send(result)))
 });
-
+// get cover by Book Id
+app.get('/books/:id/cover', (req, res) => {
+    getBookCoverById(req.params.id).then(result => (res.send(result)))
+});
 app.listen(port);
 console.log(`Listening on port ${port}`);
