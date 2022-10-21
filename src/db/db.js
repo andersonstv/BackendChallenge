@@ -43,6 +43,3 @@ export function insert(list, collectionName){
     client.close();
   });
 }); }
-// fetchBooks then Insert
-  // add base64 cover to objects
-// fetchCharacters then Insert
