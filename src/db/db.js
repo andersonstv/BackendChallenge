@@ -1,5 +1,6 @@
 import { MongoClient, ServerApiVersion } from 'mongodb';
 import dotenv from 'dotenv'
+
 dotenv.config()
 
 const mongo_password = process.env.MONGO_PASSWORD;
@@ -11,22 +12,24 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 
 // config db
 // create collections
-client.connect(err => {
-  if (err) throw err;
-  var db = client.db("asoiaf");
-  db.createCollection("books", (err, res) => {
+function createDb(){
+  client.connect(err => {
     if (err) throw err;
-    console.log("Books Collection created.");
-  })
-});
-client.connect(err => {
-  if (err) throw err;
-  var db = client.db("asoiaf");
-  db.createCollection("characters", (err, res) => {
+    var db = client.db("asoiaf");
+    db.createCollection("books", (err, res) => {
+      if (err) throw err;
+      console.log("Books Collection created.");
+    })
+  });
+  client.connect(err => {
     if (err) throw err;
-    console.log("Books Collection created.");
-  })
-});
+    var db = client.db("asoiaf");
+    db.createCollection("characters", (err, res) => {
+      if (err) throw err;
+      console.log("Books Collection created.");
+    })
+  });
+}
 
 // seeding db
 
