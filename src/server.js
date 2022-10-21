@@ -9,7 +9,7 @@ import { fetchCover } from './services/CoverService.js';
 const app = express();
 const port = 3000;
 
-//init()
+init()
 
 app.get('/', (req, res) => {
   res.send("API - A Song of Ice and Fire")
